@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользовательская форма</title>
+</head>
+<body>
+
+<form id="userForm">
+    <!-- Текстовое поле -->
+    <label for="username">Имя:</label>
+    <input type="text" id="username" name="username"><br><br>
+
+    <!-- Флажки -->
+    <input type="checkbox" id="subscribe" name="subscribe">
+    <label for="subscribe">Подписаться на рассылку</label><br><br>
+
+    <!-- Переключатели -->
+    <input type="radio" id="male" name="gender" value="male">
+    <label for="male">Мужчина</label><br>
+    <input type="radio" id="female" name="gender" value="female">
+    <label for="female">Женщина</label><br><br>
+
+    <!-- Список -->
+    <label for="country">Страна:</label>
+    <select id="country" name="country">
+        <option value="russia">Россия</option>
+        <option value="usa">США</option>
+        <option value="uk">Великобритания</option>
+    </select><br><br>
+
+    <!-- Кнопка -->
+    <input type="button" value="Отправить" onclick="submitForm()">
+</form>
+
+<!-- Область вывода данных -->
+<div id="output"></div>
+
+<script>
+    function submitForm() {
+        // Извлечение данных
+        const username = document.getElementById('username').value;
+        const subscribe = document.getElementById('subscribe').checked;
+        const gender = document.querySelector('input[name="gender"]:checked').value;
+        const country = document.getElementById('country').value;
+
+        // Формирование строки для вывода
+        let output = `
+            Имя: ${username}<br>
+            Подписка на рассылку: ${subscribe ? "Да" : "Нет"}<br>
+            Пол: ${gender}<br>
+            Страна: ${country}
+        `;
+
+        // Вывод данных на страницу
+        document.getElementById('output').innerHTML = output;
+
+        // Диалоговое окно с данными
+        alert(output.replace(/<br>/g, '\n'));
+    }
+</script>
+
+</body>
+</html>

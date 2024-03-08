@@ -1,0 +1,12 @@
+<form action="process_form.php" method="POST">
+    <label for="name">Ваше имя:</label>
+    <input type="text" id="name" name="name" required><br><br>
+    
+    <label for="phone">Ваш номер телефона:</label>
+    <input type="tel" id="phone" name="phone" required><br><br>
+    
+    <label for="additional-info">Дополнительная информация:</label><br>
+    <textarea id="additional-info" name="additional-info" rows="4" cols="50"></textarea><br><br>
+    
+    <input type="submit" value="Отправить">
+  </form>

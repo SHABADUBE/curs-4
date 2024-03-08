@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Валидация формы через JavaScript</title>
+</head>
+<body>
+    <h2>Пример валидации формы через JavaScript</h2>
+    <form id="myForm" onsubmit="return validateForm()">
+        <label for="username">Имя пользователя:</label>
+        <input type="text" id="username" name="username">
+        <span id="usernameError" style="color: red;"></span>
+        <br>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email">
+        <span id="emailError" style="color: red;"></span>
+        <br>
+
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password">
+        <span id="passwordError" style="color: red;"></span>
+        <br>
+
+        <input type="submit" value="Отправить">
+    </form>
+
+    <script>
+        function validateForm() {
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            
+            const usernameError = document.getElementById("usernameError");
+            const emailError = document.getElementById("emailError");
+            const passwordError = document.getElementById("passwordError");
+
+            // Проверка на пустое поле
+            if (username.trim() === "") {
+                usernameError.innerText = "Имя пользователя не может быть пустым";
+                return false;
+            } else {
+                usernameError.innerText = "";
+            }
+
+            if (email.trim() === "") {
+                emailError.innerText = "Email не может быть пустым";
+                return false;
+            } else {
+                emailError.innerText = "";
+            }
+
+            if (password.trim() === "") {
+                passwordError.innerText = "Пароль не может быть пустым";
+                return false;
+            } else {
+                passwordError.innerText = "";
+            }
+
+            // Проверка формата email
+            const emailPattern = /\S+@\S+\.\S+/;
+            if (!emailPattern.test(email)) {
+                emailError.innerText = "Введите корректный email";
+                return false;
+            } else {
+                emailError.innerText = "";
+            }
+
+            // Другие проверки могут быть добавлены здесь
+
+            return true;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<?php
+
+// Объявляем переменные
+$cenaTetradi = 50; // Цена одной тетради
+$kolichestvoTetradey = 10; // Количество тетрадей
+$cenaOblozhki = 30; // Цена одной обложки
+
+// Вычисляем итоговую стоимость тетрадей
+$stoimostTetradey = $cenaTetradi * $kolichestvoTetradey;
+
+// Вычисляем итоговую стоимость обложек
+$stoimostOblozhki = $cenaOblozhki * $kolichestvoTetradey;
+
+// Вычисляем итоговую стоимость покупки
+$itogovaStoimost = $stoimostTetradey + $stoimostOblozhki;
+
+// Выводим результат на экран
+echo "Итоговая стоимость покупки: " . $itogovaStoimost . " рублей";
+
+?>

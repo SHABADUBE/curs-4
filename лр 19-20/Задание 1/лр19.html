@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог блюд</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Каталог блюд</h1>
+        <div class="row" id="dishContainer">
+            {
+    "restaurantName": "Манхеттен",
+    "dishes": [
+      {
+        "dishName": "Стейк из говядины",
+        "description": "Нежное мясо с соусом и гарниром",
+        "price": 25.99,
+        "currency": "BYN"
+      },
+      {
+        "dishName": "Паста Карбонара",
+        "description": "Паста с грудинкой и сливочным соусом",
+        "price": 14.99,
+        "currency": "BYN"
+      },
+      {
+        "dishName": "Лосось гриль",
+        "description": "Свежий лосось с приправами",
+        "price": 18.49,
+        "currency": "BYN"
+      },
+      {
+        "dishName": "Суп из мидий",
+        "description": "Ароматный суп с мидиями и зеленью",
+        "price": 9.99,
+        "currency": "BYN"
+      },
+      {
+        "dishName": "Картофельные лепешки",
+        "description": "Хрустящие лепешки с картофелем",
+        "price": 8.99,
+        "currency": "BYN"
+      },
+      {
+        "dishName": "Куриный стейк",
+        "description": "Пикантный стейк из куриного филе",
+        "price": 12.99,
+        "currency": "BYN"
+      },
+      {
+        "dishName": "Салат Цезарь",
+        "description": "Салат с курицей и соусом Цезарь",
+        "price": 9.49,
+        "currency": "BYN"
+      },
+      {
+        "dishName": "Рибай стейк",
+        "description": "Ароматный стейк с картофельным пюре",
+        "price": 21.99,
+        "currency": "BYN"
+      },
+      {
+        "dishName": "Пицца Маргарита",
+        "description": "Пицца с томатами и моццареллой",
+        "price": 13.99,
+        "currency": "BYN"
+      },
+      {
+        "dishName": "Спагетти с мидиями",
+        "description": "Спагетти с мидиями и томатным соусом",
+        "price": 15.49,
+        "currency": "BYN"
+      },
+      {
+        "dishName": "Омар по-кантонски",
+        "description": "Омар с овощами и соусом",
+        "price": 27.99,
+        "currency": "BYN"
+      },
+      {
+        "dishName": "Салат Греческий",
+        "description": "Салат с оливками и фетой",
+        "price": 10.99,
+        "currency": "BYN"
+      },
+      {
+        "dishName": "Филе красного окуня",
+        "description": "Филе окуня с лимоном и зеленью",
+        "price": 19.99,
+        "currency": "BYN"
+      },
+      {
+        "dishName": "Карри с креветками",
+        "description": "Карри с сочными креветками",
+        "price": 16.99,
+        "currency": "BYN"
+      },
+      {
+        "dishName": "Чизкейк Нью-Йорк",
+        "description": "Нежный чизкейк с ягодным соусом",
+        "price": 8.99,
+        "currency": "BYN"
+      }
+    ]
+  }
+        </div>
+    </div>
+
+    <script>
+        // Загрузка данных из dishes.json и создание карточек блюд
+        fetch('dishes.json')
+            .then(response => response.json())
+            .then(data => {
+                const dishContainer = document.getElementById('dishContainer');
+
+                data.dishes.forEach(dish => {
+                    const card = document.createElement('div');
+                    card.classList.add('col-md-4', 'mb-4');
+                    card.innerHTML = `
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">${dish.dishName}</h5>
+                                <p class="card-text">${dish.description}</p>
+                                <p class="card-text">Цена: ${dish.price.toFixed(2)} ${dish.currency}</p>
+                                <button class="btn btn-primary" onclick="addToCart(${JSON.stringify(dish)})">Добавить в корзину</button>
+                            </div>
+                        </div>
+                    `;
+                    dishContainer.appendChild(card);
+                });
+            })
+            .catch(error => console.error(error));
+    </script>
+
+    <script>
+        // JavaScript для управления корзиной (как в предыдущем ответе)
+        const cartItems = [];
+
+        function addToCart(dish) {
+            cartItems.push(dish);
+            console.log('Добавлено в корзину:', dish.dishName);
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<form action="process_form.php" method="POST" onsubmit="return handleSubmit(event)">
+  <label for="name">Ваше имя:</label>
+  <input type="text" id="name" name="name" required minlength="2" maxlength="20"><br><br>
+  
+  <label for="phone">Ваш номер телефона:</label>
+  <input type="tel" id="phone" name="phone" required pattern="[0-9]{10,12}"><br><br>
+  
+  <label for="additional-info">Дополнительная информация:</label><br>
+  <textarea id="additional-info" name="additional-info" rows="4" cols="50"></textarea><br><br>
+  
+  <input type="submit" value="заказать">
+</form>
+
+<div id="output"></div>
+
+<script>
+  function handleSubmit(event) {
+      event.preventDefault();  // Предотвращаем отправку формы на сервер
+
+      // Получаем значения полей формы
+      var name = document.getElementById("name").value;
+      var phone = document.getElementById("phone").value;
+      var additionalInfo = document.getElementById("additional-info").value;
+
+      // Создаем объект для сохранения данных
+      var formData = {
+          name: name,
+          phone: phone,
+          additionalInfo: additionalInfo
+      };
+
+      // Преобразуем объект в формат JSON
+      var jsonData = JSON.stringify(formData);
+
+      // Сохраняем JSON-данные в Local Storage
+      localStorage.setItem("formData", jsonData);
+
+      // Обновляем значения на странице
+      var outputDiv = document.getElementById("output");
+      outputDiv.innerHTML =
+          "<strong>Данные формы:</strong><br><pre>" + jsonData + "</pre>";
+
+      return false;  // Запрещает отправку формы на сервер
+  }
+
+  // Проверяем, есть ли сохраненные JSON-данные в Local Storage и выводим их при загрузке страницы
+  window.addEventListener("load", function () {
+      var jsonData = localStorage.getItem("formData");
+      if (jsonData) {
+          var formData = JSON.parse(jsonData);
+          var outputDiv = document.getElementById("output");
+          outputDiv.innerHTML =
+              "<strong>Данные формы:</strong><br><pre>" + jsonData + "</pre>";
+      }
+  });
+</script>

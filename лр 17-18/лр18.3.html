@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Примеры регулярных выражений и методов String</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .code-block {
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .code {
+            font-family: "Courier New", monospace;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            margin: 10px 0;
+        }
+
+        button {
+            background-color: #0074d9;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Примеры регулярных выражений и методов String</h1>
+
+    <div class="code-block">
+        <h2>Пример 1: Поиск чисел в строке</h2>
+        <div class="code">
+            const text1 = "Встречайте 2023 год! 42 это ответ на все вопросы.";
+            const regex1 = /\d+/g;
+            const numbers = text1.match(regex1);
+            console.log("Пример 1 - Поиск чисел:", numbers);
+        </div>
+        <div class="user-input">
+            <input type="text" id="userData1" placeholder="Введите текст">
+            <button onclick="checkData(1)">Проверить</button>
+            <p id="result1"></p>
+        </div>
+    </div>
+
+    <div class "code-block">
+        <h2>Пример 2: Замена дат в формате "dd/mm/yyyy" на "yyyy-mm-dd"</h2>
+        <div class="code">
+            const text2 = "Today is 30/10/2023 and tomorrow is 31/10/2023.";
+            const pattern2 = /(\d{2})\/(\d{2})\/(\d{4})/g;
+            const result2 = text2.replace(pattern2, "$3-$2-$1");
+            console.log("Измененный текст с замененными датами:", result2);
+        </div>
+        <div class="user-input">
+            <input type="text" id="userData2" placeholder="Введите текст">
+            <button onclick="checkData(2)">Проверить</button>
+            <p id="result2"></p>
+        </div>
+    </div>
+
+    <div class="code-block">
+        <h2>Пример 3: Поиск email-адресов в тексте</h2>
+        <div class="code">
+            const text3 = "My email addresses are example1@email.com and example2@email.co.uk";
+            const pattern3 = /[\w.-]+@[A-Za-z.-]+\.[A-Za-z]{2,4}/g;
+            const result3 = text3.match(pattern3);
+            console.log("Email-адреса в тексте:", result3);
+        </div>
+        <div class="user-input">
+            <input type="text" id="userData3" placeholder="Введите текст">
+            <button onclick="checkData(3)">Проверить</button>
+            <p id="result3"></p>
+        </div>
+    </div>
+
+    <script>
+        function checkData(exampleNumber) {
+            const inputId = `userData${exampleNumber}`;
+            const resultId = `result${exampleNumber}`;
+            const userData = document.getElementById(inputId).value;
+
+            switch (exampleNumber) {
+                case 1:
+                    const regex1 = /\d+/g;
+                    const numbers1 = userData.match(regex1);
+                    document.getElementById(resultId).textContent = `Найденные числа: ${numbers1}`;
+                    break;
+                case 2:
+                    const pattern2 = /(\d{2})\/(\d{2})\/(\d{4})/g;
+                    const result2 = userData.replace(pattern2, "$3-$2-$1");
+                    document.getElementById(resultId).textContent = `Измененный текст: ${result2}`;
+                    break;
+                case 3:
+                    const pattern3 = /[\w.-]+@[A-Za-z.-]+\.[A-Za-z]{2,4}/g;
+                    const result3 = userData.match(pattern3);
+                    document.getElementById(resultId).textContent = `Email-адреса в тексте: ${result3}`;
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Валидация формы с использованием атрибутов HTML5</title>
+    <link rel="stylesheet" type="text/css" href="лр17.1.css">
+</head>
+<body>
+    <h1>Валидация формы с использованием атрибутов HTML5</h1>
+
+    <form action="#" method="post">
+        <label for="username">Имя пользователя:</label>
+        <input type="text" id="username" name="username" required>
+        <!-- Атрибут "required" требует, чтобы поле было заполнено -->
+
+        <br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <!-- Атрибут "type" с значением "email" выполняет базовую валидацию email-адреса -->
+
+        <br>
+
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" required minlength="8">
+        <!-- Атрибут "minlength" требует, чтобы пароль был длиной не менее 8 символов -->
+
+        <br>
+
+        <label for="age">Возраст:</label>
+        <input type="number" id="age" name="age" min="18" max="99">
+        <!-- Атрибуты "min" и "max" устанавливают диапазон допустимых значений -->
+
+        <br>
+
+        <label for="country">Страна:</label>
+        <select id="country" name="country" required>
+            <option value=""></option>
+            <option value="by">Республика Беларусь</option>
+            <option value="ru">Российская Федерация</option>
+            <option value="kz">Республика Казахстан</option>
+        </select>
+        <!-- Атрибут "required" требует выбора значения из выпадающего списка -->
+
+        <br>
+
+        <label for="agree">Согласие с условиями:</label>
+        <input type="checkbox" id="agree" name="agree" required>
+        <!-- Атрибут "required" требует отметки согласия с условиями -->
+
+        <br>
+
+        <button type="submit">Отправить форму</button>
+    </form>
+</body>
+</html>
